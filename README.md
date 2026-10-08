@@ -1,4 +1,4 @@
-# Mi Proyecto SvelteKit
+# EcoConsumo App
 
 Un proyecto web desarrollado con SvelteKit.
 
