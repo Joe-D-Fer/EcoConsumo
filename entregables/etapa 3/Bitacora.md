@@ -52,7 +52,7 @@ Estado: **Realizada** · **Pendiente** · **Por confirmar** = fila que deben com
 | 29 | Vie 20-11-2026 | 19:00–21:00 | Autónoma | Diapositivas 1 a 3: portada, contexto y problemática (con variabilidad regional), objetivo y preguntas | Bairon | Realizada | diapositiva.jpeg (portada) |
 | 30 | Dom 22-11-2026 | 17:00–18:00 | Autónoma | Programación de indicadores, gráficos de consumo (barras y líneas) y vista de la matriz artefactos × meses | Joe | Realizada | src/routes/resultados (horario estimado; reprogramada desde el 21-11) |
 | 31 | Sáb 21-11-2026 | 10:00–12:00 | Autónoma | Revisión y cierre de las diapositivas 5, 6 y 11: fuentes explícitas y formato APA | Andre | Realizada | Informado por Joe |
-| 32 | Dom 22-11-2026 | 18:00–19:00 | Autónoma | Programación de la simulación de cambios de hábitos, comparación de escenarios y comparación con la boleta real | Joe | Realizada | src/routes/simulacion (horario estimado) |
+| 32 | Dom 22-11-2026 | 16:00–17:30 | Autónoma | Programación de la simulación de cambios de hábitos, comparación de escenarios y comparación con la boleta real | Joe | Realizada | src/routes/simulacion |
 | 33 | Dom 22-11-2026 | 16:00–17:30 | Autónoma | Diapositiva 4: resumen de la bitácora para la presentación | Bairon | Pendiente | — |
 | 34 | Lun 23-11-2026 | 19:00–21:00 | Autónoma | Revisión del diseño de la interfaz en computador y celular; lista de observaciones | Andre | Pendiente | — |
 | 35 | Lun 23-11-2026 | 19:00–22:00 | Autónoma | Diapositivas 7 y 8: guion de la demostración y esquema resumen de las nociones matemáticas | Joe | Pendiente | — |
@@ -66,4 +66,4 @@ Estado: **Realizada** · **Pendiente** · **Por confirmar** = fila que deben com
 | 43 | Lun 30-11-2026 | 20:00–21:30 | Autónoma | Primer ensayo de la presentación con control de tiempos | Joe, Andre, Bairon | Pendiente | — |
 | 44 | Mié 02-12-2026 | 20:00–21:30 | Autónoma | Ensayo general con demostración en vivo y verificación del despliegue | Joe, Andre, Bairon | Pendiente | — |
 | 45 | Jue 03-12-2026 | 21:10–22:30 | Clase | Presentación final del proyecto | Joe, Andre, Bairon | Pendiente | — |
-| 46 | Dom 22-11-2026 | Por confirmar | Autónoma | Integración de GeoGebra en la aplicación: funciones de costo y consumo, sucesión del consumo, vectores y matriz construidos con los datos del hogar y verificados contra los cálculos de la aplicación | Joe | Realizada | src/routes/geogebra y src/lib/geogebra |
+| 46 | Dom 22-11-2026 | 17:30–19:00 | Autónoma | Integración de GeoGebra en la aplicación: funciones de costo y consumo, sucesión del consumo, vectores y matriz construidos con los datos del hogar y verificados contra los cálculos de la aplicación | Joe | Realizada | src/routes/geogebra y src/lib/geogebra |
