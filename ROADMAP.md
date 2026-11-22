@@ -71,6 +71,10 @@ Funciones puras en `src/lib/matematica/`, sin dependencias de la interfaz.
 - [x] Gráfico de barras: comparación entre artefactos (vector E, de mayor a menor)
 - [x] Gráfico de líneas: evolución en el año, por mes (sucesión aⱼ) o acumulada (sumas parciales Sₙ)
 - [x] Vista de la matriz artefactos × meses como mapa de calor, con totales por fila y columna
+- [x] Integración con GeoGebra (página `/geogebra`, 22-11): función de costo y de consumo con deslizadores,
+  sucesión aⱼ y sumas parciales Sₙ, vectores, sumatoria y matriz M = E · fᵀ construidos con los datos del
+  hogar mediante la API de GeoGebra; GeoGebra recalcula el resultado y la página lo compara con el de la
+  aplicación. Comandos copiables para repetir la construcción en GeoGebra Clásico
 
 ## Fase 5 — Simulación (v0.5.0) · 22 de noviembre ✔
 
@@ -101,3 +105,6 @@ Funciones puras en `src/lib/matematica/`, sin dependencias de la interfaz.
 - Tarifa: cada distribuidora puede tener un precio distinto en cada comuna; si no hay precio para la
   comuna, se usa la tarifa base de la distribuidora.
 - Dirección: lista de comunas con búsqueda (por nombre o región, sin distinguir tildes); sin servicio externo.
+- GeoGebra: API oficial (`deployggb.js`) con GeoGebra Clásico en lugar de un iframe, porque un iframe no
+  permite enviar los datos del hogar ni leer los resultados. La calculadora gráfica no acepta Segment ni
+  Polyline, por eso se usa la versión clásica. Requiere conexión a geogebra.org.

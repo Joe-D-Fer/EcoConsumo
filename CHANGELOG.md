@@ -56,6 +56,16 @@ Categorías: **Agregado**, **Cambiado**, **Corregido**, **Eliminado**.
   `PUBLIC_SUPABASE_ANON_KEY` (`src/env.ts`, `.env.example`) y módulo `src/lib/datos/supabase.ts` (2026-11-22).
 - Campo `fuente` en distribuidoras, tarifas y catálogo (2026-11-22).
 
+- Página «GeoGebra» (`/geogebra`) que construye en GeoGebra Clásico, con los datos del hogar, la función
+  lineal de costo C(E) = p · E + F, la función de consumo E(h) de un artefacto, la sucesión aⱼ con sus sumas
+  parciales Sₙ, y los vectores, la sumatoria Σ Eᵢ y la matriz M = E · fᵀ. Los deslizadores E y h se pueden
+  mover, y la página compara el resultado calculado por GeoGebra con el de EcoConsumo (2026-11-22).
+- Componente `GeoGebra.svelte`, que carga la API oficial de GeoGebra (`deployggb.js`), ejecuta los comandos
+  de una escena y lee los valores de vuelta (2026-11-22).
+- Módulo `src/lib/geogebra/escenas.ts` con funciones puras que traducen los datos a comandos de GeoGebra,
+  con 5 pruebas unitarias; los comandos se pueden copiar para pegarlos en GeoGebra (2026-11-22).
+- Enlace «GeoGebra» en el menú principal (2026-11-22).
+
 ### Cambiado
 
 - Los datos de referencia se leen desde Supabase cuando está configurado; si no, se usan los de ejemplo

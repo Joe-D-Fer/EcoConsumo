@@ -15,7 +15,8 @@
 		{ href: '/', texto: 'Inicio' },
 		{ href: '/hogar', texto: 'Mi hogar' },
 		{ href: '/resultados', texto: 'Resultados' },
-		{ href: '/simulacion', texto: 'Simulación' }
+		{ href: '/simulacion', texto: 'Simulación' },
+		{ href: '/geogebra', texto: 'GeoGebra' }
 	];
 
 	// Al montar la aplicación se leen los datos de referencia (Supabase o ejemplo) y los del hogar.
