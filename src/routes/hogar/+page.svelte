@@ -5,6 +5,8 @@
 	import SelectorComuna from '#lib/components/SelectorComuna.svelte';
 	import FormularioArtefacto from '#lib/components/FormularioArtefacto.svelte';
 	import ListaArtefactos from '#lib/components/ListaArtefactos.svelte';
+	import SelectorHogarTipo from '#lib/components/SelectorHogarTipo.svelte';
+	import type { HogarTipo } from '#lib/datos/hogares-tipo.js';
 	import { referencia } from '#lib/estado/referencia.svelte.js';
 	import { hogar } from '#lib/estado/hogar.svelte.js';
 	import type { Artefacto } from '#lib/matematica/index.js';
@@ -29,6 +31,17 @@
 		await tick();
 		tarjetaFormulario?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 		tarjetaFormulario?.querySelector<HTMLInputElement>('#nombre')?.focus({ preventScroll: true });
+	}
+
+	let mensajeCarga = $state('');
+
+	function hogarTipoCargado(tipo: HogarTipo) {
+		editandoId = null;
+		const comuna = referencia.comunas.find((c) => c.id === hogar.comunaId);
+		mensajeCarga =
+			`Se cargaron ${tipo.artefactos.length} artefactos de «${tipo.nombre}»` +
+			(comuna ? `, con la tarifa de ${comuna.nombre}.` : '.') +
+			' Puedes editarlos o eliminarlos en la tabla.';
 	}
 
 	function eliminar(id: string) {
@@ -57,6 +70,23 @@
 			</Alert.Description>
 		</Alert.Root>
 	{/if}
+
+	<section id="hogares-tipo" class="scroll-mt-4">
+		<Card.Root>
+			<Card.Header>
+				<Card.Title>Partir de un hogar tipo</Card.Title>
+				<Card.Description>
+					Carga un hogar con artefactos ya configurados y ajústalo a tu caso, sin ingresarlos uno por uno.
+				</Card.Description>
+			</Card.Header>
+			<Card.Content>
+				<SelectorHogarTipo onCargado={hogarTipoCargado} />
+				{#if mensajeCarga}
+					<p class="mt-3 text-sm" role="status">{mensajeCarga}</p>
+				{/if}
+			</Card.Content>
+		</Card.Root>
+	</section>
 
 	<div class="grid items-start gap-6 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]">
 		<div class="space-y-6">

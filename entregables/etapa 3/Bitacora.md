@@ -67,3 +67,4 @@ Estado: **Realizada** · **Pendiente** · **Por confirmar** = fila que deben com
 | 44 | Mié 02-12-2026 | 20:00–21:30 | Autónoma | Ensayo general con demostración en vivo y verificación del despliegue | Joe, Andre, Bairon | Pendiente | — |
 | 45 | Jue 03-12-2026 | 21:10–22:30 | Clase | Presentación final del proyecto | Joe, Andre, Bairon | Pendiente | — |
 | 46 | Dom 22-11-2026 | 17:30–19:00 | Autónoma | Integración de GeoGebra en la aplicación: funciones de costo y consumo, sucesión del consumo, vectores y matriz construidos con los datos del hogar y verificados contra los cálculos de la aplicación | Joe | Realizada | src/routes/geogebra y src/lib/geogebra |
+| 47 | Dom 22-11-2026 | 19:00–19:30 | Autónoma | Programación de hogares tipo con artefactos preconfigurados, para la demostración y para cargar un hogar sin ingresar cada artefacto | Joe | Realizada | src/lib/datos/hogares-tipo.ts (horario estimado) |

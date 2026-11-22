@@ -63,6 +63,8 @@ Funciones puras en `src/lib/matematica/`, sin dependencias de la interfaz.
 - [x] Validación de datos ingresados
 - [x] Guardado en el navegador (localStorage) y en Supabase cuando está configurado
 - [ ] Reemplazar los datos de ejemplo (`src/lib/datos/ejemplo.ts`) por los de Bairon y Andre
+- [x] Hogares tipo con artefactos preconfigurados, cargables con un clic (`src/lib/datos/hogares-tipo.ts`)
+- [ ] Revisar los valores de los hogares tipo con el catálogo investigado (Andre)
 
 ## Fase 4 — Visualización (v0.4.0) · 22 de noviembre ✔
 
@@ -88,7 +90,7 @@ Funciones puras en `src/lib/matematica/`, sin dependencias de la interfaz.
 
 - [ ] Diseño adaptable a celular y accesibilidad básica
 - [ ] Correcciones de la revisión de interfaz (Andre)
-- [ ] Datos de ejemplo para la demostración
+- [~] Datos de ejemplo para la demostración (hogares tipo listos; falta elegir cuál usar en el guion)
 - [ ] Correcciones de las pruebas beta (Bairon y Andre)
 - [ ] Revisión de comentarios del código y README
 - [ ] Verificación final del despliegue antes de la presentación

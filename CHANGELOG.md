@@ -66,6 +66,13 @@ Categorías: **Agregado**, **Cambiado**, **Corregido**, **Eliminado**.
   con 5 pruebas unitarias; los comandos se pueden copiar para pegarlos en GeoGebra (2026-11-22).
 - Enlace «GeoGebra» en el menú principal (2026-11-22).
 
+- Hogares tipo (`src/lib/datos/hogares-tipo.ts`): cuatro hogares con artefactos ya configurados
+  (departamento de una persona, familia de cuatro, casa con calefacción eléctrica y teletrabajo), con
+  valores provisorios. En «Mi hogar» se cargan con un clic, mostrando el consumo estimado de cada uno;
+  reemplazan los artefactos registrados (con confirmación), seleccionan la comuna del hogar tipo si aún no
+  hay una y reinician la simulación. Botón «Probar con un hogar tipo» en la página de inicio. Pruebas
+  unitarias que validan sus artefactos, comunas y consumo (2026-11-22).
+
 ### Cambiado
 
 - Los datos de referencia se leen desde Supabase cuando está configurado; si no, se usan los de ejemplo

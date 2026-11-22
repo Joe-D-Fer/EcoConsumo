@@ -38,6 +38,16 @@
 			comuna y la compañía distribuidora. EcoConsumo estima el consumo y el costo de cada artefacto con la
 			tarifa de tu comuna, para que puedas decidir dónde ahorrar.
 		</p>
-		<Button href="/hogar" size="lg">Registrar mis artefactos</Button>
+		<div class="flex flex-wrap gap-3">
+			<Button href="/hogar" size="lg">Registrar mis artefactos</Button>
+			<Button
+				href="/hogar#hogares-tipo"
+				size="lg"
+				variant="outline"
+				class="border-white/40 bg-transparent text-white hover:bg-white/10 hover:text-white"
+			>
+				Probar con un hogar tipo
+			</Button>
+		</div>
 	</div>
 </section>

@@ -35,7 +35,7 @@
 
 {#if artefactos.length === 0}
 	<p class="text-muted-foreground text-sm">
-		Aún no hay artefactos. Agrega el primero con el formulario.
+		Aún no hay artefactos. Agrega el primero con el formulario o parte de un hogar tipo.
 	</p>
 {:else}
 	<Table.Root>

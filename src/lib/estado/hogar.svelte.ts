@@ -9,6 +9,7 @@
 import { referencia } from './referencia.svelte.js';
 import { escribirHogar, hayBaseDeDatos, leerHogar, type DatosHogar } from '#lib/datos/supabase.js';
 import { tarifaDeComuna } from '#lib/datos/tarifas.js';
+import type { HogarTipo } from '#lib/datos/hogares-tipo.js';
 import type { Artefacto, Tarifa } from '#lib/matematica/index.js';
 
 /** Artefacto registrado en el hogar, con identificador propio. */
@@ -193,6 +194,19 @@ export class EstadoHogar {
 
 	eliminar(id: string): void {
 		this.artefactos = this.artefactos.filter((a) => a.id !== id);
+		this.guardar();
+	}
+
+	/**
+	 * Reemplaza los artefactos registrados por los de un hogar tipo. Si aún no se ha indicado una
+	 * comuna, se selecciona la del hogar tipo; la comuna, la tarifa y la boleta ya ingresadas se mantienen.
+	 */
+	cargarHogarTipo(tipo: HogarTipo): void {
+		this.artefactos = tipo.artefactos.map((a) => ({ ...a, id: nuevoId() }));
+		if (this.comunaId === null && referencia.comunas.some((c) => c.id === tipo.comunaId)) {
+			this.comunaId = tipo.comunaId;
+			this.tarifaManual = null;
+		}
 		this.guardar();
 	}
 
