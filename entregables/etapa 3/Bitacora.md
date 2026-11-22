@@ -2,7 +2,7 @@
 
 **Asignatura:** MVFM01 Funciones y Matrices · **Docente:** Nicole Catalina Godoy Rojas
 **Integrantes:** Andresaint Antoine (Andre), Bairon José Tapia Vergara (Bairon), Joe Darrien Fernández Álvarez (Joe)
-**Clases:** jueves de 21:10 a 22:30; además miércoles de 19:50 a 22:30 hasta el 14-10-2026 · **Última actualización:** 14-11-2026
+**Clases:** jueves de 21:10 a 22:30; además miércoles de 19:50 a 22:30 hasta el 14-10-2026 · **Última actualización:** 22-11-2026
 
 Tipo: **Clase** = trabajo durante la clase · **Autónoma** = horas autónomas.
 Estado: **Realizada** · **Pendiente** · **Por confirmar** = fila que deben completar o corregir los integrantes indicados.
@@ -46,15 +46,15 @@ Estado: **Realizada** · **Pendiente** · **Por confirmar** = fila que deben com
 | 23 | Dom 15-11-2026 | 10:00–13:00 | Autónoma | Diseño del modelo de datos y creación de la base de datos en Supabase | Joe | Pendiente | — |
 | 24 | Lun 16-11-2026 | 19:00–21:00 | Autónoma | Investigación de tarifas por región: compañías distribuidoras, comunas que atienden y precio del kWh, con sus fuentes | Bairon | Pendiente | — |
 | 25 | Lun 16-11-2026 | 19:00–21:00 | Autónoma | Catálogo de artefactos domésticos con potencia típica y consumo en standby, con sus fuentes | Andre | Pendiente | — |
-| 26 | Mar 17-11-2026 | 19:00–22:00 | Autónoma | Programación del módulo matemático: funciones de consumo y costo, vectores, matrices y sumatorias | Joe | Pendiente | — |
+| 26 | Dom 22-11-2026 | 15:00–16:00 | Autónoma | Programación del módulo matemático: funciones de consumo y costo, vectores, matrices, sumatorias y sucesiones, con pruebas unitarias | Joe | Realizada | src/lib/matematica (horario estimado; reprogramada desde el 17-11) |
 | 27 | Mié 18-11-2026 | 19:00–21:00 | Autónoma | Primer despliegue de la aplicación en Vercel conectada a Supabase | Joe | Pendiente | — |
 | 28 | Mié 18-11-2026 | 19:00–20:30 | Autónoma | Entrega a Joe de los datos de tarifas y de artefactos en planilla para cargarlos a la base de datos | Bairon, Andre | Pendiente | — |
 | 29 | Jue 19-11-2026 | 21:10–22:30 | Clase | Presentación del avance a la docente y consulta sobre el formato de la bitácora | Joe, Andre, Bairon | Pendiente | — |
-| 30 | Vie 20-11-2026 | 19:00–22:00 | Autónoma | Programación del registro de artefactos y del ingreso de dirección que selecciona compañía y precio | Joe | Pendiente | — |
+| 30 | Dom 22-11-2026 | 16:00–17:00 | Autónoma | Programación del registro de artefactos y del ingreso de comuna que selecciona compañía y precio (con datos de ejemplo hasta recibir los de las filas 24 y 25) | Joe | Realizada | src/routes/hogar (horario estimado; reprogramada desde el 20-11) |
 | 31 | Vie 20-11-2026 | 19:00–21:00 | Autónoma | Diapositivas 1 a 3: portada, contexto y problemática (con variabilidad regional), objetivo y preguntas | Bairon | Pendiente | — |
-| 32 | Sáb 21-11-2026 | 10:00–14:00 | Autónoma | Programación de tablas, indicadores y gráficos de consumo | Joe | Pendiente | — |
+| 32 | Dom 22-11-2026 | 17:00–18:00 | Autónoma | Programación de indicadores, gráficos de consumo (barras y líneas) y vista de la matriz artefactos × meses | Joe | Realizada | src/routes/resultados (horario estimado; reprogramada desde el 21-11) |
 | 33 | Sáb 21-11-2026 | 10:00–12:00 | Autónoma | Revisión y cierre de las diapositivas 5, 6 y 11: fuentes explícitas y formato APA | Andre | Pendiente | — |
-| 34 | Dom 22-11-2026 | 10:00–14:00 | Autónoma | Programación de la simulación de cambios de hábitos y comparación de escenarios | Joe | Pendiente | — |
+| 34 | Dom 22-11-2026 | 18:00–19:00 | Autónoma | Programación de la simulación de cambios de hábitos, comparación de escenarios y comparación con la boleta real | Joe | Realizada | src/routes/simulacion (horario estimado) |
 | 35 | Dom 22-11-2026 | 16:00–17:30 | Autónoma | Diapositiva 4: resumen de la bitácora para la presentación | Bairon | Pendiente | — |
 | 36 | Lun 23-11-2026 | 19:00–21:00 | Autónoma | Revisión del diseño de la interfaz en computador y celular; lista de observaciones | Andre | Pendiente | — |
 | 37 | Lun 23-11-2026 | 19:00–22:00 | Autónoma | Diapositivas 7 y 8: guion de la demostración y esquema resumen de las nociones matemáticas | Joe | Pendiente | — |
