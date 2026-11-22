@@ -35,7 +35,7 @@ Estado: `[ ]` pendiente · `[~]` en curso · `[x]` terminado
 - [x] La aplicación lee los datos de referencia desde Supabase y guarda el hogar ahí (con respaldo en el
   navegador y en los datos de ejemplo si no hay conexión)
 - [ ] Carga inicial de tarifas y catálogo con los datos que entreguen Bairon y Andre
-- [ ] Primer despliegue en Vercel desde GitHub
+- [~] Primer despliegue en Vercel desde GitHub (22-11); falta que la versión publicada use Supabase
 
 ## Fase 2 — Módulo matemático (v0.2.0) · 22 de noviembre ✔
 
