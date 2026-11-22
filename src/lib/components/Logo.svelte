@@ -21,10 +21,11 @@
 			<path d="M51 25 V54 H39" />
 		</g>
 		<g fill="var(--marca-naranja)">
-			<rect x="30.5" y="13" width="3" height="9" rx="1.5" />
-			<rect x="25" y="21" width="14" height="13" rx="3" />
-			<rect x="27.5" y="33" width="3" height="8" rx="1.2" />
-			<rect x="33.5" y="33" width="3" height="8" rx="1.2" />
+			<!-- Enchufe como en la portada: patas hacia el techo y el cable hacia abajo. -->
+			<rect x="27.5" y="15" width="3" height="8" rx="1.2" />
+			<rect x="33.5" y="15" width="3" height="8" rx="1.2" />
+			<rect x="25" y="22" width="14" height="13" rx="3" />
+			<rect x="30.5" y="34" width="3" height="13" rx="1.5" />
 		</g>
 		<path d="M46 16 C46 7 52 2 61 2 C61 11 55 16 46 16 Z" fill="var(--marca-verde)" />
 		<path d="M47.5 14.5 L56 6" stroke="var(--marca-oscuro)" stroke-width="1.4" stroke-linecap="round" />

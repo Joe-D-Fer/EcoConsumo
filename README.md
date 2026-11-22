@@ -2,6 +2,8 @@
 
 Un proyecto web desarrollado con SvelteKit.
 
+**Aplicación publicada:** <https://eco-consumo-inacap.vercel.app>
+
 ## Requisitos
 
 * Node.js (versión 24.21.0 LTS recomendada)

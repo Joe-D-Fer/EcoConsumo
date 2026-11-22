@@ -74,6 +74,11 @@ Categorías: **Agregado**, **Cambiado**, **Corregido**, **Eliminado**.
 - Gráficos de consumo y mapa de calor de la matriz en la escala naranja de marca; el ahorro acumulado de la
   simulación se muestra en verde (2026-11-22).
 
+### Corregido
+
+- El enchufe del logotipo quedaba invertido; ahora tiene las patas hacia el techo y el cable hacia abajo,
+  como en la portada de la presentación (2026-11-22).
+
 ### Eliminado
 
 - Página de práctica con GeoGebra y la tabla de ejemplo (2026-11-22).
