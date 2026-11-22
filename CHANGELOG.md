@@ -64,6 +64,15 @@ Categorías: **Agregado**, **Cambiado**, **Corregido**, **Eliminado**.
   los cambios quedan pendientes y se envían al volver a abrir la aplicación (2026-11-22).
 - El aviso «Datos de ejemplo» se muestra mientras algún dato de referencia no tenga fuente (2026-11-22).
 - Los enlaces del menú principal no se dividen en dos líneas en pantallas angostas (2026-11-22).
+- Identidad visual alineada con la portada de la presentación: logotipo (casa, enchufe y hoja) en el
+  componente `Logo.svelte` y en el favicon; colores de marca naranja `#F98C00`, verde `#8CE000` y fondo
+  oscuro `#0A0D12` como variables `--marca-*`; encabezado, pie y portada de inicio con fondo oscuro y
+  acento naranja; botones principales en naranja (2026-11-22).
+- Logotipo de INACAP (`src/lib/assets/inacap.svg`, desde Wikimedia Commons, con letras blancas para fondo
+  oscuro) junto a «Sede Curicó» en la portada de inicio y en el pie de página, como en la portada de la
+  presentación (2026-11-22).
+- Gráficos de consumo y mapa de calor de la matriz en la escala naranja de marca; el ahorro acumulado de la
+  simulación se muestra en verde (2026-11-22).
 
 ### Eliminado
 

@@ -43,7 +43,7 @@
 	const angosto = $derived(ancho > 0 && ancho < 420);
 	const marcas = $derived(angosto ? [1, 3, 6, 9, 12] : puntos.map((p) => p.n));
 
-	const config = { valor: { label: 'Ahorro acumulado', color: 'var(--chart-1)' } } satisfies Chart.ChartConfig;
+	const config = { valor: { label: 'Ahorro acumulado', color: 'var(--chart-2)' } } satisfies Chart.ChartConfig;
 </script>
 
 <div class="space-y-5">
@@ -97,7 +97,7 @@
 						yDomain={[0, null]}
 						yNice
 						padding={{ left: 56, right: 72, bottom: 24, top: 8 }}
-						series={[{ key: 'valor', label: 'Acumulado', color: 'var(--chart-1)' }]}
+						series={[{ key: 'valor', label: 'Acumulado', color: 'var(--chart-2)' }]}
 						points={angosto ? false : { r: 4, class: 'stroke-background', strokeWidth: 2 }}
 						props={{
 							spline: { strokeWidth: 2 },

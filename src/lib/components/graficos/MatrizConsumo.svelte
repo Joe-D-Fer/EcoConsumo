@@ -1,5 +1,5 @@
 <!--
-	Vista de la matriz M (artefactos × meses) como mapa de calor: un solo tono azul, de claro
+	Vista de la matriz M (artefactos × meses) como mapa de calor: un solo tono naranja (color de marca), de claro
 	(menor consumo) a oscuro (mayor consumo). Incluye los totales por fila y por columna.
 	M = E · fᵀ, con fⱼ = Dⱼ / 30 (días del mes j sobre el mes de referencia de 30 días).
 -->
@@ -28,7 +28,7 @@
 	const total = $derived(totalMatriz(m));
 	const maximo = $derived(Math.max(0, ...m.flat()));
 
-	/** Pasos de la escala secuencial azul (definidos en layout.css), de claro a oscuro. */
+	/** Pasos de la escala secuencial naranja (definidos en layout.css), de claro a oscuro. */
 	const PASOS = [100, 200, 300, 400, 500, 600, 700] as const;
 
 	/**
@@ -42,10 +42,13 @@
 		return `color-mix(in oklch, var(--mapa-calor-${PASOS[k + 1]}) ${t}%, var(--mapa-calor-${PASOS[k]}))`;
 	}
 
-	/** Color de fondo y de texto de una celda (texto blanco cuando el fondo es oscuro). */
+	/**
+	 * Color de fondo y de texto de una celda: texto blanco solo en los tonos más oscuros de la escala,
+	 * donde supera en contraste al texto negro.
+	 */
 	function estilo(valor: number): string {
 		const fraccion = maximo === 0 ? 0 : valor / maximo;
-		const texto = fraccion > 0.45 ? '#ffffff' : '#0b0b0b';
+		const texto = fraccion > 0.8 ? '#ffffff' : '#0b0b0b';
 		return `background-color: ${mezcla(fraccion)}; color: ${texto}`;
 	}
 </script>

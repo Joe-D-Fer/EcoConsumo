@@ -1,6 +1,8 @@
 <script lang="ts">
 	import './layout.css';
 	import favicon from '#lib/assets/favicon.svg';
+	import Logo from '#lib/components/Logo.svelte';
+	import inacap from '#lib/assets/inacap.svg';
 	import { page } from '$app/state';
 	import { onMount } from 'svelte';
 	import { hogar } from '#lib/estado/hogar.svelte.js';
@@ -28,9 +30,9 @@
 </svelte:head>
 
 <div class="bg-background text-foreground flex min-h-screen flex-col font-sans antialiased">
-	<header class="border-b">
+	<header class="bg-marca-oscuro border-marca-naranja border-b-2 text-white">
 		<div class="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-2 px-4 py-3">
-			<a href="/" class="text-lg font-semibold tracking-tight">EcoConsumo</a>
+			<a href="/" class="text-xl" aria-label="EcoConsumo, inicio"><Logo /></a>
 			<nav aria-label="Principal">
 				<ul class="flex flex-wrap gap-1">
 					{#each enlaces as e (e.href)}
@@ -38,7 +40,7 @@
 							<a
 								href={e.href}
 								aria-current={page.url.pathname === e.href ? 'page' : undefined}
-								class="hover:bg-muted aria-[current=page]:bg-muted rounded-md px-2.5 py-1.5 text-sm font-medium whitespace-nowrap sm:px-3"
+								class="aria-[current=page]:text-marca-naranja rounded-md text-white/80 hover:bg-white/10 hover:text-white aria-[current=page]:bg-white/10 px-2.5 py-1.5 text-sm font-medium whitespace-nowrap sm:px-3"
 							>
 								{e.texto}
 							</a>
@@ -53,9 +55,10 @@
 		{@render children()}
 	</main>
 
-	<footer class="text-muted-foreground border-t">
-		<p class="mx-auto max-w-6xl px-4 py-4 text-xs">
-			Proyecto ABPro · MVFM01 Funciones y Matrices · INACAP
-		</p>
+	<footer class="bg-marca-oscuro text-white/65">
+		<div class="mx-auto flex max-w-6xl flex-wrap items-center gap-x-4 gap-y-2 px-4 py-4 text-xs">
+			<img src={inacap} alt="INACAP" class="h-5 w-auto" />
+			<p>Proyecto ABPro · MVFM01 Funciones y Matrices · Sede Curicó</p>
+		</div>
 	</footer>
 </div>
