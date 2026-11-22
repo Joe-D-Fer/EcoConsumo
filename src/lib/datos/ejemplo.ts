@@ -2,13 +2,11 @@
  * DATOS DE EJEMPLO, solo para desarrollo.
  *
  * Los precios son valores ficticios y la asignación de comunas a distribuidoras debe verificarse.
+ * Se usan cuando no hay base de datos configurada; los mismos datos están en `supabase/seed.sql`.
  * Se reemplazarán por la investigación de tarifas (Bairon, bitácora fila 24) y por el catálogo de
  * artefactos (Andre, fila 25) cuando se carguen en Supabase.
  */
 import type { ArtefactoCatalogo, Comuna, Distribuidora } from './tipos';
-
-/** Indica en la interfaz que los datos aún no son reales. */
-export const SON_DATOS_DE_EJEMPLO = true;
 
 export const distribuidoras: Distribuidora[] = [
 	{ id: 'enel', nombre: 'Enel Distribución', tarifaBase: { precioKwh: 200, cargoFijo: 1000 } },

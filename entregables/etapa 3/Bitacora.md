@@ -43,7 +43,7 @@ Estado: **Realizada** · **Pendiente** · **Por confirmar** = fila que deben com
 | 20 | Jue 12-11-2026 | 21:10–22:30 | Clase | Diapositivas 5, 6 y 11: justificación del producto, respuestas con sus fuentes y bibliografía en formato APA | Joe, Andre | Realizada | Estimado |
 | 21 | Jue 12-11-2026 | 21:10–22:30 | Clase | Revisión de las instrucciones y de la rúbrica de la Etapa 3; identificación del trabajo pendiente | Joe, Andre, Bairon | Realizada | Estimado |
 | 22 | Sáb 14-11-2026 | 12:30–15:00 | Autónoma | Organización de entregables en el repositorio, elaboración de la bitácora y del plan de desarrollo (roadmap) | Joe | Realizada | Archivos del repositorio |
-| 23 | Dom 15-11-2026 | 10:00–13:00 | Autónoma | Diseño del modelo de datos y creación de la base de datos en Supabase | Joe | Pendiente | — |
+| 23 | Dom 22-11-2026 | 19:00–20:00 | Autónoma | Diseño del modelo de datos y creación de la base de datos en Supabase | Joe | Realizada | supabase/ y proyecto en Supabase (horario estimado; reprogramada desde el 15-11) |
 | 24 | Lun 16-11-2026 | 19:00–21:00 | Autónoma | Investigación de tarifas por región: compañías distribuidoras, comunas que atienden y precio del kWh, con sus fuentes | Bairon | Pendiente | — |
 | 25 | Lun 16-11-2026 | 19:00–21:00 | Autónoma | Catálogo de artefactos domésticos con potencia típica y consumo en standby, con sus fuentes | Andre | Pendiente | — |
 | 26 | Dom 22-11-2026 | 15:00–16:00 | Autónoma | Programación del módulo matemático: funciones de consumo y costo, vectores, matrices, sumatorias y sucesiones, con pruebas unitarias | Joe | Realizada | src/lib/matematica (horario estimado; reprogramada desde el 17-11) |

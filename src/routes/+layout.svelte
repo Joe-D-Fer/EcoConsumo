@@ -4,6 +4,7 @@
 	import { page } from '$app/state';
 	import { onMount } from 'svelte';
 	import { hogar } from '#lib/estado/hogar.svelte.js';
+	import { referencia } from '#lib/estado/referencia.svelte.js';
 	import type { LayoutProps } from './$types';
 
 	let { children }: LayoutProps = $props();
@@ -15,8 +16,11 @@
 		{ href: '/simulacion', texto: 'Simulación' }
 	];
 
-	// Los datos del hogar se guardan en el navegador; se leen al montar la aplicación.
-	onMount(() => hogar.cargar());
+	// Al montar la aplicación se leen los datos de referencia (Supabase o ejemplo) y los del hogar.
+	onMount(() => {
+		void referencia.cargar();
+		hogar.cargar();
+	});
 </script>
 
 <svelte:head>

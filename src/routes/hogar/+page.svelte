@@ -5,7 +5,7 @@
 	import SelectorComuna from '#lib/components/SelectorComuna.svelte';
 	import FormularioArtefacto from '#lib/components/FormularioArtefacto.svelte';
 	import ListaArtefactos from '#lib/components/ListaArtefactos.svelte';
-	import { SON_DATOS_DE_EJEMPLO } from '#lib/datos/ejemplo.js';
+	import { referencia } from '#lib/estado/referencia.svelte.js';
 	import { hogar } from '#lib/estado/hogar.svelte.js';
 	import type { Artefacto } from '#lib/matematica/index.js';
 	import { tick } from 'svelte';
@@ -49,7 +49,7 @@
 		<p class="text-muted-foreground">Indica tu comuna y registra los artefactos que usas.</p>
 	</div>
 
-	{#if SON_DATOS_DE_EJEMPLO}
+	{#if referencia.sonProvisorios}
 		<Alert.Root>
 			<Alert.Title>Datos de ejemplo</Alert.Title>
 			<Alert.Description>

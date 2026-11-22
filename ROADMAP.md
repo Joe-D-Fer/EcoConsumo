@@ -18,17 +18,22 @@ Estado: `[ ]` pendiente · `[~]` en curso · `[x]` terminado
 ## Fase 1 — Datos y despliegue (v0.1.0) · 15 al 18 de noviembre
 
 - [x] Quitar la página de práctica (GeoGebra y tabla de ejemplo)
-- [ ] Proyecto Supabase y variables de entorno (`PUBLIC_SUPABASE_URL`, `PUBLIC_SUPABASE_ANON_KEY`)
-- [ ] Esquema de base de datos:
-  - `distribuidoras` (nombre)
-  - `distribuidoras` lleva además la tarifa base (precio por kWh y cargo fijo)
+- [x] Proyecto Supabase y variables de entorno (`PUBLIC_SUPABASE_URL`, `PUBLIC_SUPABASE_ANON_KEY`); pasos en
+  `supabase/README.md`
+- [x] Esquema de base de datos (`supabase/migrations/`, modelo en `supabase/README.md`):
+  - `distribuidoras` (nombre, tarifa base: precio por kWh y cargo fijo, fuente)
   - `comunas` (nombre, región, distribuidora)
-  - `tarifas` (distribuidora y comuna, precio por kWh, cargo fijo, vigencia): precio de la distribuidora en
-    una comuna; si no existe, se usa la tarifa base de la distribuidora
-  - `catalogo_artefactos` (nombre, categoría, potencia típica en W, standby en W)
-  - `hogares` (identificador anónimo, comuna) y `artefactos_hogar` (hogar, artefacto, potencia, cantidad,
-    horas por día, días por mes, standby)
-- [ ] Sin inicio de sesión: identificador anónimo de hogar guardado en el navegador; políticas RLS acordes
+  - `tarifas` (distribuidora y comuna, precio por kWh, cargo fijo, vigencia, fuente): precio de la
+    distribuidora en una comuna; si no existe, se usa la tarifa base de la distribuidora
+  - vista `comunas_con_tarifa` con la tarifa vigente de cada comuna
+  - `catalogo_artefactos` (nombre, categoría, potencia típica en W, standby en W, uso sugerido, fuente)
+  - `hogares` (token anónimo, comuna, tarifa manual, boleta) y `artefactos_hogar` (hogar, artefacto,
+    potencia, cantidad, horas por día, días por mes, standby)
+- [x] Sin inicio de sesión: token anónimo de hogar guardado en el navegador; tablas de hogares sin acceso
+  directo (RLS) y funciones `obtener_hogar` / `guardar_hogar` que exigen el token
+- [x] Datos de ejemplo en `supabase/seed.sql`
+- [x] La aplicación lee los datos de referencia desde Supabase y guarda el hogar ahí (con respaldo en el
+  navegador y en los datos de ejemplo si no hay conexión)
 - [ ] Carga inicial de tarifas y catálogo con los datos que entreguen Bairon y Andre
 - [ ] Primer despliegue en Vercel desde GitHub
 
@@ -56,7 +61,7 @@ Funciones puras en `src/lib/matematica/`, sin dependencias de la interfaz.
 - [x] Ingreso de comuna que selecciona automáticamente la compañía y el precio
   (requisito de la docente), con opción de corregir el precio a mano
 - [x] Validación de datos ingresados
-- [~] Guardado: por ahora en el navegador (localStorage); falta Supabase (Fase 1)
+- [x] Guardado en el navegador (localStorage) y en Supabase cuando está configurado
 - [ ] Reemplazar los datos de ejemplo (`src/lib/datos/ejemplo.ts`) por los de Bairon y Andre
 
 ## Fase 4 — Visualización (v0.4.0) · 22 de noviembre ✔

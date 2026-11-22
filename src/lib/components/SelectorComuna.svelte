@@ -8,13 +8,15 @@
 	import { Input } from '#lib/components/ui/input/index.js';
 	import { Label } from '#lib/components/ui/label/index.js';
 	import { Badge } from '#lib/components/ui/badge/index.js';
-	import { comunas } from '#lib/datos/ejemplo.js';
+	import { referencia } from '#lib/estado/referencia.svelte.js';
 	import { hogar } from '#lib/estado/hogar.svelte.js';
 	import { formatearNumero, formatearPesos } from '#lib/formato.js';
 
-	const opciones: OpcionBuscador[] = [...comunas]
-		.sort((a, b) => a.region.localeCompare(b.region, 'es') || a.nombre.localeCompare(b.nombre, 'es'))
-		.map((c) => ({ id: c.id, etiqueta: c.nombre, grupo: `Región ${c.region}` }));
+	const opciones: OpcionBuscador[] = $derived(
+		[...referencia.comunas]
+			.sort((a, b) => a.region.localeCompare(b.region, 'es') || a.nombre.localeCompare(b.nombre, 'es'))
+			.map((c) => ({ id: c.id, etiqueta: c.nombre, grupo: `Región ${c.region}` }))
+	);
 
 	let corrigiendo = $state(false);
 	let precio = $state<number | null>(null);

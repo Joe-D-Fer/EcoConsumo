@@ -47,8 +47,22 @@ Categorías: **Agregado**, **Cambiado**, **Corregido**, **Eliminado**.
 - Funciones `aplicarCambios`, `consumoEnPeriodo` y `calidadEstimacion` en el módulo matemático, con
   pruebas (2026-11-22).
 
+- Esquema de la base de datos en Supabase (`supabase/migrations/`): distribuidoras, comunas, tarifas por
+  comuna con vigencia, catálogo de artefactos, hogares anónimos y sus artefactos, con Row Level Security y
+  funciones `obtener_hogar`, `guardar_hogar` y `eliminar_hogar` protegidas por un token (2026-11-22).
+- Datos de ejemplo para la base de datos (`supabase/seed.sql`) y documentación del modelo de datos y de la
+  puesta en marcha (`supabase/README.md`) (2026-11-22).
+- Cliente de Supabase (`@supabase/supabase-js`), variables de entorno `PUBLIC_SUPABASE_URL` y
+  `PUBLIC_SUPABASE_ANON_KEY` (`src/env.ts`, `.env.example`) y módulo `src/lib/datos/supabase.ts` (2026-11-22).
+- Campo `fuente` en distribuidoras, tarifas y catálogo (2026-11-22).
+
 ### Cambiado
 
+- Los datos de referencia se leen desde Supabase cuando está configurado; si no, se usan los de ejemplo
+  (`src/lib/estado/referencia.svelte.ts`) (2026-11-22).
+- El hogar se guarda también en Supabase, con un token anónimo generado en el navegador; si no hay conexión,
+  los cambios quedan pendientes y se envían al volver a abrir la aplicación (2026-11-22).
+- El aviso «Datos de ejemplo» se muestra mientras algún dato de referencia no tenga fuente (2026-11-22).
 - Los enlaces del menú principal no se dividen en dos líneas en pantallas angostas (2026-11-22).
 
 ### Eliminado

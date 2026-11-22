@@ -8,7 +8,7 @@
 	import { Input } from '#lib/components/ui/input/index.js';
 	import { Label } from '#lib/components/ui/label/index.js';
 	import * as Alert from '#lib/components/ui/alert/index.js';
-	import { catalogo } from '#lib/datos/ejemplo.js';
+	import { referencia } from '#lib/estado/referencia.svelte.js';
 	import type { ArtefactoHogar } from '#lib/estado/hogar.svelte.js';
 	import { consumoMensual, HORAS_DIA, validarArtefacto, type Artefacto } from '#lib/matematica/index.js';
 	import { formatearNumero } from '#lib/formato.js';
@@ -22,12 +22,14 @@
 
 	let { inicial = null, onGuardar, onCancelar }: Props = $props();
 
-	const opcionesCatalogo: OpcionBuscador[] = catalogo.map((c) => ({
-		id: c.id,
-		etiqueta: c.nombre,
-		detalle: `${formatearNumero(c.potenciaW, 0)} W`,
-		grupo: c.categoria
-	}));
+	const opcionesCatalogo: OpcionBuscador[] = $derived(
+		referencia.catalogo.map((c) => ({
+			id: c.id,
+			etiqueta: c.nombre,
+			detalle: `${formatearNumero(c.potenciaW, 0)} W`,
+			grupo: c.categoria
+		}))
+	);
 
 	// El componente se vuelve a crear (con {#key}) al cambiar el artefacto a editar,
 	// por eso basta con leer `inicial` una sola vez.
@@ -56,7 +58,7 @@
 	const valido = $derived(errores.length === 0);
 
 	function usarCatalogo(id: string) {
-		const c = catalogo.find((x) => x.id === id);
+		const c = referencia.catalogo.find((x) => x.id === id);
 		if (!c) return;
 		catalogoId = c.id;
 		nombre = c.nombre;
