@@ -16,35 +16,32 @@ export const distribuidoras: Distribuidora[] = [
 ];
 
 export const comunas: Comuna[] = [
-	{ id: 'santiago', nombre: 'Santiago', region: 'Metropolitana', distribuidoraId: 'enel' },
+	{ id: 'santiago', nombre: 'Santiago', region: 'Metropolitana', servicios: [{ distribuidoraId: 'enel' }] },
 	{
 		id: 'providencia',
 		nombre: 'Providencia',
 		region: 'Metropolitana',
-		distribuidoraId: 'enel',
-		tarifa: { precioKwh: 198, cargoFijo: 1000 }
+		servicios: [{ distribuidoraId: 'enel', tarifa: { precioKwh: 198, cargoFijo: 1000 } }]
 	},
-	{ id: 'maipu', nombre: 'Maipú', region: 'Metropolitana', distribuidoraId: 'enel' },
-	{ id: 'valparaiso', nombre: 'Valparaíso', region: 'Valparaíso', distribuidoraId: 'chilquinta' },
+	{ id: 'maipu', nombre: 'Maipú', region: 'Metropolitana', servicios: [{ distribuidoraId: 'enel' }] },
+	{ id: 'valparaiso', nombre: 'Valparaíso', region: 'Valparaíso', servicios: [{ distribuidoraId: 'chilquinta' }] },
 	{
 		id: 'vina-del-mar',
 		nombre: 'Viña del Mar',
 		region: 'Valparaíso',
-		distribuidoraId: 'chilquinta',
-		tarifa: { precioKwh: 207, cargoFijo: 1050 }
+		servicios: [{ distribuidoraId: 'chilquinta', tarifa: { precioKwh: 207, cargoFijo: 1050 } }]
 	},
-	{ id: 'rancagua', nombre: 'Rancagua', region: "O'Higgins", distribuidoraId: 'cge' },
-	{ id: 'talca', nombre: 'Talca', region: 'Maule', distribuidoraId: 'cge' },
+	{ id: 'rancagua', nombre: 'Rancagua', region: "O'Higgins", servicios: [{ distribuidoraId: 'cge' }] },
+	{ id: 'talca', nombre: 'Talca', region: 'Maule', servicios: [{ distribuidoraId: 'cge' }] },
 	{
 		id: 'concepcion',
 		nombre: 'Concepción',
 		region: 'Biobío',
-		distribuidoraId: 'cge',
-		tarifa: { precioKwh: 215, cargoFijo: 1100 }
+		servicios: [{ distribuidoraId: 'cge', tarifa: { precioKwh: 215, cargoFijo: 1100 } }]
 	},
-	{ id: 'temuco', nombre: 'Temuco', region: 'La Araucanía', distribuidoraId: 'cge' },
-	{ id: 'osorno', nombre: 'Osorno', region: 'Los Lagos', distribuidoraId: 'saesa' },
-	{ id: 'puerto-montt', nombre: 'Puerto Montt', region: 'Los Lagos', distribuidoraId: 'saesa' }
+	{ id: 'temuco', nombre: 'Temuco', region: 'La Araucanía', servicios: [{ distribuidoraId: 'cge' }] },
+	{ id: 'osorno', nombre: 'Osorno', region: 'Los Lagos', servicios: [{ distribuidoraId: 'saesa' }] },
+	{ id: 'puerto-montt', nombre: 'Puerto Montt', region: 'Los Lagos', servicios: [{ distribuidoraId: 'saesa' }] }
 ];
 
 export const catalogo: ArtefactoCatalogo[] = [

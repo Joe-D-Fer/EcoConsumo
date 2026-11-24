@@ -22,16 +22,18 @@ Estado: `[ ]` pendiente · `[~]` en curso · `[x]` terminado
   `supabase/README.md`
 - [x] Esquema de base de datos (`supabase/migrations/`, modelo en `supabase/README.md`):
   - `distribuidoras` (nombre, tarifa base: precio por kWh y cargo fijo, fuente)
-  - `comunas` (nombre, región, distribuidora)
+  - `comunas` (nombre, región) y `comuna_distribuidoras` (compañías que atienden cada comuna; una principal)
   - `tarifas` (distribuidora y comuna, precio por kWh, cargo fijo, vigencia, fuente): precio de la
     distribuidora en una comuna; si no existe, se usa la tarifa base de la distribuidora
-  - vista `comunas_con_tarifa` con la tarifa vigente de cada comuna
+  - vista `comunas_con_tarifa` con la tarifa vigente de cada comuna y distribuidora
   - `catalogo_artefactos` (nombre, categoría, potencia típica en W, standby en W, uso sugerido, fuente)
-  - `hogares` (token anónimo, comuna, tarifa manual, boleta) y `artefactos_hogar` (hogar, artefacto,
+  - `hogares` (token anónimo, comuna, compañía elegida, tarifa manual, boleta) y `artefactos_hogar` (hogar, artefacto,
     potencia, cantidad, horas por día, días por mes, standby)
 - [x] Sin inicio de sesión: token anónimo de hogar guardado en el navegador; tablas de hogares sin acceso
   directo (RLS) y funciones `obtener_hogar` / `guardar_hogar` que exigen el token
 - [x] Datos de ejemplo en `supabase/seed.sql`
+- [x] Comunas con más de una compañía distribuidora (tabla `comuna_distribuidoras`; la persona usuaria
+  elige la de su boleta) (23-11)
 - [x] La aplicación lee los datos de referencia desde Supabase y guarda el hogar ahí (con respaldo en el
   navegador y en los datos de ejemplo si no hay conexión)
 - [ ] Carga inicial de tarifas y catálogo con los datos que entreguen Bairon y Andre

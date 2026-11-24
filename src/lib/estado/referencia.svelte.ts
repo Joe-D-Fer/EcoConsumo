@@ -19,7 +19,7 @@ export class EstadoReferencia {
 	sonProvisorios = $derived(
 		this.origen === 'ejemplo' ||
 			this.distribuidoras.some((d) => !d.fuente) ||
-			this.comunas.some((c) => c.tarifa && !c.fuente) ||
+			this.comunas.some((c) => c.servicios.some((s) => s.tarifa && !s.fuente)) ||
 			this.catalogo.some((a) => !a.fuente)
 	);
 

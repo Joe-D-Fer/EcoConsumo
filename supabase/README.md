@@ -1,6 +1,8 @@
 # Base de datos de EcoConsumo (Supabase)
 
 - `migrations/20261122190000_esquema_inicial.sql`: tablas, vista, funciones y seguridad.
+- `migrations/20261123120000_varias_distribuidoras_por_comuna.sql`: permite que una comuna sea atendida por
+  más de una compañía distribuidora.
 - `seed.sql`: datos de **ejemplo** (los mismos de `src/lib/datos/ejemplo.ts`). Se puede ejecutar varias
   veces.
 
@@ -8,10 +10,11 @@
 
 ```mermaid
 erDiagram
-	distribuidoras ||--o{ comunas : atiende
-	comunas ||--o{ tarifas : "tiene precio propio"
-	distribuidoras ||--o{ tarifas : cobra
+	comunas ||--o{ comuna_distribuidoras : "es atendida por"
+	distribuidoras ||--o{ comuna_distribuidoras : atiende
+	comuna_distribuidoras ||--o{ tarifas : "tiene precio propio"
 	comunas |o--o{ hogares : "ubica"
+	comuna_distribuidoras |o--o{ hogares : "elegida por"
 	hogares ||--o{ artefactos_hogar : registra
 	catalogo_artefactos |o--o{ artefactos_hogar : "sugiere valores"
 
@@ -26,7 +29,11 @@ erDiagram
 		text id PK
 		text nombre
 		text region
-		text distribuidora_id FK
+	}
+	comuna_distribuidoras {
+		text comuna_id PK,FK
+		text distribuidora_id PK,FK
+		boolean principal "se selecciona automáticamente"
 	}
 	tarifas {
 		bigint id PK
@@ -51,6 +58,7 @@ erDiagram
 		uuid id PK
 		uuid token UK "secreto del navegador"
 		text comuna_id FK
+		text distribuidora_id FK "nula = la principal"
 		numeric precio_kwh_manual
 		numeric cargo_fijo_manual
 		numeric boleta_kwh
@@ -70,10 +78,20 @@ erDiagram
 	}
 ```
 
-**Selección automática de la tarifa** (retroalimentación de la docente): la comuna determina la
-distribuidora; la vista `comunas_con_tarifa` entrega, para cada comuna, la tarifa propia más reciente con
-`vigente_desde ≤ hoy`. Si la comuna no tiene tarifa propia, la aplicación usa la tarifa base de la
-distribuidora. Una tarifa solo puede registrarse para la distribuidora que atiende la comuna.
+**Selección automática de la tarifa** (retroalimentación de la docente): al elegir la comuna se selecciona
+su distribuidora **principal**. Si la comuna es atendida por más de una compañía (fila en
+`comuna_distribuidoras` con `principal = false`), la aplicación permite elegir la que aparece en la boleta,
+y se guarda en `hogares.distribuidora_id`. La vista `comunas_con_tarifa` entrega una fila por comuna y
+distribuidora, con la tarifa propia más reciente con `vigente_desde ≤ hoy`; si no hay tarifa propia, la
+aplicación usa la tarifa base de la distribuidora. Una tarifa solo puede registrarse para una distribuidora
+que atiende la comuna, y cada comuna tiene a lo más una principal.
+
+Para agregar una segunda compañía a una comuna:
+
+```sql
+insert into public.comuna_distribuidoras (comuna_id, distribuidora_id, principal)
+values ('<comuna>', '<distribuidora>', false);
+```
 
 **Datos provisorios:** mientras alguna distribuidora, tarifa de comuna o artefacto del catálogo no tenga
 `fuente`, la aplicación muestra el aviso «Datos de ejemplo». Al cargar los datos de Bairon y Andre, completar
@@ -95,8 +113,8 @@ la fuente de cada fila.
 ## Puesta en marcha
 
 1. Crear un proyecto en [supabase.com](https://supabase.com) (región São Paulo, la más cercana a Chile).
-2. En **SQL Editor**, ejecutar el contenido de `migrations/20261122190000_esquema_inicial.sql` y luego el de
-   `seed.sql`.
+2. En **SQL Editor**, ejecutar en orden el contenido de cada archivo de `migrations/` y luego el de
+   `seed.sql`. En un proyecto que ya tiene el esquema inicial, ejecutar solo las migraciones nuevas.
 3. En **Project Settings → API**, copiar la URL del proyecto y la clave **anon / publishable**.
 4. Copiar `.env.example` como `.env` en la raíz del proyecto y completar `PUBLIC_SUPABASE_URL` y
    `PUBLIC_SUPABASE_ANON_KEY`. En Vercel, agregar las mismas variables al proyecto.

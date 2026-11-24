@@ -9,6 +9,7 @@
  */
 import { createClient, type SupabaseClient } from '@supabase/supabase-js';
 import { PUBLIC_SUPABASE_ANON_KEY, PUBLIC_SUPABASE_URL } from '$app/env/public';
+import { agruparComunas, type FilaComunaConTarifa } from './tarifas';
 import type { ArtefactoCatalogo, Comuna, Distribuidora } from './tipos';
 
 /** Datos de un hogar tal como se guardan (misma forma en el navegador y en la base de datos). */
@@ -24,6 +25,8 @@ export interface DatosHogar {
 		standbyW: number;
 	}[];
 	comunaId: string | null;
+	/** Compañía elegida en una comuna con varias; `null` = la principal. Opcional en datos antiguos. */
+	distribuidoraId?: string | null;
 	tarifaManual: { precioKwh: number; cargoFijo: number } | null;
 	boleta: { kwh: number; dias: number } | null;
 }
@@ -58,8 +61,7 @@ export async function leerReferencia(): Promise<DatosReferencia> {
 		db.from('distribuidoras').select('id, nombre, precio_kwh, cargo_fijo, fuente').order('nombre'),
 		db
 			.from('comunas_con_tarifa')
-			.select('id, nombre, region, distribuidora_id, precio_kwh, cargo_fijo, fuente')
-			.order('nombre'),
+			.select('id, nombre, region, distribuidora_id, principal, precio_kwh, cargo_fijo, fuente'),
 		db
 			.from('catalogo_artefactos')
 			.select('id, nombre, categoria, potencia_w, standby_w, horas_dia_sugeridas, dias_mes_sugeridos, fuente')
@@ -76,17 +78,7 @@ export async function leerReferencia(): Promise<DatosReferencia> {
 			tarifaBase: { precioKwh: num(x.precio_kwh), cargoFijo: num(x.cargo_fijo) },
 			fuente: x.fuente ?? undefined
 		})),
-		comunas: (c.data ?? []).map((x) => ({
-			id: x.id,
-			nombre: x.nombre,
-			region: x.region,
-			distribuidoraId: x.distribuidora_id,
-			tarifa:
-				x.precio_kwh == null
-					? undefined
-					: { precioKwh: num(x.precio_kwh), cargoFijo: num(x.cargo_fijo) },
-			fuente: x.fuente ?? undefined
-		})),
+		comunas: agruparComunas((c.data ?? []) as FilaComunaConTarifa[]),
 		catalogo: (a.data ?? []).map((x) => ({
 			id: x.id,
 			nombre: x.nombre,
@@ -108,6 +100,7 @@ export async function leerHogar(token: string): Promise<DatosHogar | null> {
 	const datos = data as DatosHogar;
 	return {
 		comunaId: datos.comunaId ?? null,
+		distribuidoraId: datos.distribuidoraId ?? null,
 		tarifaManual: datos.tarifaManual
 			? { precioKwh: num(datos.tarifaManual.precioKwh), cargoFijo: num(datos.tarifaManual.cargoFijo) }
 			: null,

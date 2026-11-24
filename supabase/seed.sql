@@ -18,28 +18,43 @@ on conflict (id) do update set
 	nombre = excluded.nombre, precio_kwh = excluded.precio_kwh, cargo_fijo = excluded.cargo_fijo,
 	actualizado_en = now();
 
-insert into public.comunas (id, nombre, region, distribuidora_id) values
-	('santiago',     'Santiago',     'Metropolitana', 'enel'),
-	('providencia',  'Providencia',  'Metropolitana', 'enel'),
-	('maipu',        'Maipú',        'Metropolitana', 'enel'),
-	('valparaiso',   'Valparaíso',   'Valparaíso',    'chilquinta'),
-	('vina-del-mar', 'Viña del Mar', 'Valparaíso',    'chilquinta'),
-	('rancagua',     'Rancagua',     'O''Higgins',    'cge'),
-	('talca',        'Talca',        'Maule',         'cge'),
-	('concepcion',   'Concepción',   'Biobío',        'cge'),
-	('temuco',       'Temuco',       'La Araucanía',  'cge'),
-	('osorno',       'Osorno',       'Los Lagos',     'saesa'),
-	('puerto-montt', 'Puerto Montt', 'Los Lagos',     'saesa')
+insert into public.comunas (id, nombre, region) values
+	('santiago',     'Santiago',     'Metropolitana'),
+	('providencia',  'Providencia',  'Metropolitana'),
+	('maipu',        'Maipú',        'Metropolitana'),
+	('valparaiso',   'Valparaíso',   'Valparaíso'),
+	('vina-del-mar', 'Viña del Mar', 'Valparaíso'),
+	('rancagua',     'Rancagua',     'O''Higgins'),
+	('talca',        'Talca',        'Maule'),
+	('concepcion',   'Concepción',   'Biobío'),
+	('temuco',       'Temuco',       'La Araucanía'),
+	('osorno',       'Osorno',       'Los Lagos'),
+	('puerto-montt', 'Puerto Montt', 'Los Lagos')
 on conflict (id) do update set
-	nombre = excluded.nombre, region = excluded.region, distribuidora_id = excluded.distribuidora_id;
+	nombre = excluded.nombre, region = excluded.region;
+
+-- Compañías que atienden cada comuna; la principal se selecciona automáticamente. Para agregar una
+-- segunda compañía a una comuna, agregar otra fila con principal = false.
+insert into public.comuna_distribuidoras (comuna_id, distribuidora_id, principal) values
+	('santiago',     'enel',       true),
+	('providencia',  'enel',       true),
+	('maipu',        'enel',       true),
+	('valparaiso',   'chilquinta', true),
+	('vina-del-mar', 'chilquinta', true),
+	('rancagua',     'cge',        true),
+	('talca',        'cge',        true),
+	('concepcion',   'cge',        true),
+	('temuco',       'cge',        true),
+	('osorno',       'saesa',      true),
+	('puerto-montt', 'saesa',      true)
+on conflict (comuna_id, distribuidora_id) do update set principal = excluded.principal;
 
 insert into public.tarifas (comuna_id, distribuidora_id, precio_kwh, cargo_fijo, vigente_desde) values
 	('providencia',  'enel',       198, 1000, '2026-11-01'),
 	('vina-del-mar', 'chilquinta', 207, 1050, '2026-11-01'),
 	('concepcion',   'cge',        215, 1100, '2026-11-01')
-on conflict (comuna_id, vigente_desde) do update set
-	distribuidora_id = excluded.distribuidora_id, precio_kwh = excluded.precio_kwh,
-	cargo_fijo = excluded.cargo_fijo;
+on conflict (comuna_id, distribuidora_id, vigente_desde) do update set
+	precio_kwh = excluded.precio_kwh, cargo_fijo = excluded.cargo_fijo;
 
 insert into public.catalogo_artefactos
 	(id, nombre, categoria, potencia_w, standby_w, horas_dia_sugeridas, dias_mes_sugeridos) values
