@@ -72,6 +72,8 @@ function escribirLocal(clave: string, valor: string | null): void {
 export class EstadoHogar {
 	artefactos = $state<ArtefactoHogar[]>([]);
 	comunaId = $state<string | null>(null);
+	/** Compañía elegida en una comuna atendida por varias; `null` = la principal de la comuna. */
+	distribuidoraId = $state<string | null>(null);
 	/** Tarifa corregida a mano por la persona usuaria; reemplaza la tarifa automática. */
 	tarifaManual = $state<Tarifa | null>(null);
 	/** Consumo de la boleta real ingresado por la persona usuaria. */
@@ -86,7 +88,7 @@ export class EstadoHogar {
 	/** Compañía y tarifa seleccionadas automáticamente según la comuna. */
 	tarifaAutomatica = $derived(
 		this.comunaId
-			? tarifaDeComuna(this.comunaId, referencia.comunas, referencia.distribuidoras)
+			? tarifaDeComuna(this.comunaId, this.distribuidoraId, referencia.comunas, referencia.distribuidoras)
 			: null
 	);
 
@@ -97,6 +99,7 @@ export class EstadoHogar {
 		return {
 			artefactos: $state.snapshot(this.artefactos),
 			comunaId: this.comunaId,
+			distribuidoraId: this.distribuidoraId,
 			tarifaManual: $state.snapshot(this.tarifaManual),
 			boleta: $state.snapshot(this.boleta)
 		};
@@ -105,6 +108,7 @@ export class EstadoHogar {
 	private aplicar(datos: Partial<DatosHogar>): void {
 		this.artefactos = Array.isArray(datos.artefactos) ? datos.artefactos : [];
 		this.comunaId = datos.comunaId ?? null;
+		this.distribuidoraId = datos.distribuidoraId ?? null;
 		this.tarifaManual = datos.tarifaManual ?? null;
 		this.boleta = datos.boleta ?? null;
 	}
@@ -205,14 +209,23 @@ export class EstadoHogar {
 		this.artefactos = tipo.artefactos.map((a) => ({ ...a, id: nuevoId() }));
 		if (this.comunaId === null && referencia.comunas.some((c) => c.id === tipo.comunaId)) {
 			this.comunaId = tipo.comunaId;
+			this.distribuidoraId = null;
 			this.tarifaManual = null;
 		}
 		this.guardar();
 	}
 
-	/** Cambia la comuna; la tarifa vuelve a ser la automática de la nueva comuna. */
+	/** Cambia la comuna; la compañía vuelve a ser la principal y la tarifa, la automática. */
 	seleccionarComuna(id: string): void {
 		this.comunaId = id;
+		this.distribuidoraId = null;
+		this.tarifaManual = null;
+		this.guardar();
+	}
+
+	/** Elige otra compañía de las que atienden la comuna; la tarifa vuelve a ser la automática. */
+	seleccionarDistribuidora(id: string): void {
+		this.distribuidoraId = id;
 		this.tarifaManual = null;
 		this.guardar();
 	}

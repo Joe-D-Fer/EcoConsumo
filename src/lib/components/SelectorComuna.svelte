@@ -1,6 +1,7 @@
 <!--
 	Ingreso de la comuna: selecciona automáticamente la compañía distribuidora y el precio del kWh,
 	con la opción de corregir el precio a mano (por ejemplo, para usar el de la propia boleta).
+	Si la comuna es atendida por más de una compañía, permite elegir la que aparece en la boleta.
 -->
 <script lang="ts">
 	import Buscador, { type OpcionBuscador } from './Buscador.svelte';
@@ -8,6 +9,8 @@
 	import { Input } from '#lib/components/ui/input/index.js';
 	import { Label } from '#lib/components/ui/label/index.js';
 	import { Badge } from '#lib/components/ui/badge/index.js';
+	import * as ToggleGroup from '#lib/components/ui/toggle-group/index.js';
+	import { distribuidorasDeComuna } from '#lib/datos/tarifas.js';
 	import { referencia } from '#lib/estado/referencia.svelte.js';
 	import { hogar } from '#lib/estado/hogar.svelte.js';
 	import { formatearNumero, formatearPesos } from '#lib/formato.js';
@@ -16,6 +19,13 @@
 		[...referencia.comunas]
 			.sort((a, b) => a.region.localeCompare(b.region, 'es') || a.nombre.localeCompare(b.nombre, 'es'))
 			.map((c) => ({ id: c.id, etiqueta: c.nombre, grupo: `Región ${c.region}` }))
+	);
+
+	/** Compañías de la comuna elegida, si hay más de una. */
+	const alternativas = $derived(
+		hogar.tarifaAutomatica
+			? distribuidorasDeComuna(hogar.tarifaAutomatica.comuna, referencia.distribuidoras)
+			: []
 	);
 
 	let corrigiendo = $state(false);
@@ -62,6 +72,32 @@
 
 	{#if hogar.tarifaAutomatica && hogar.tarifa}
 		{@const auto = hogar.tarifaAutomatica}
+		{#if alternativas.length > 1}
+			<div class="space-y-2">
+				<p class="text-sm" id="distribuidora-ayuda">
+					{auto.comuna.nombre} es atendida por más de una compañía. Elige la que aparece en tu boleta.
+				</p>
+				<ToggleGroup.Root
+					type="single"
+					variant="outline"
+					size="sm"
+					value={auto.distribuidora.id}
+					onValueChange={(v) => {
+						if (v && v !== auto.distribuidora.id) {
+							hogar.seleccionarDistribuidora(v);
+							corrigiendo = false;
+						}
+					}}
+					aria-label="Compañía distribuidora"
+					aria-describedby="distribuidora-ayuda"
+					class="flex-wrap"
+				>
+					{#each alternativas as d (d.id)}
+						<ToggleGroup.Item value={d.id}>{d.nombre}</ToggleGroup.Item>
+					{/each}
+				</ToggleGroup.Root>
+			</div>
+		{/if}
 		<dl class="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 text-sm">
 			<dt class="text-muted-foreground">Compañía</dt>
 			<dd class="font-medium">{auto.distribuidora.nombre}</dd>

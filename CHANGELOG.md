@@ -72,6 +72,11 @@ Categorías: **Agregado**, **Cambiado**, **Corregido**, **Eliminado**.
   reemplazan los artefactos registrados (con confirmación), seleccionan la comuna del hogar tipo si aún no
   hay una y reinician la simulación. Botón «Probar con un hogar tipo» en la página de inicio. Pruebas
   unitarias que validan sus artefactos, comunas y consumo (2026-11-22).
+- Comunas atendidas por más de una compañía distribuidora: migración
+  `supabase/migrations/20261123120000_varias_distribuidoras_por_comuna.sql` con la tabla
+  `comuna_distribuidoras` (compañías de cada comuna y su principal), una tarifa por comuna y distribuidora,
+  y la compañía elegida en `hogares`. En «Mi hogar», si la comuna tiene varias compañías, se puede elegir
+  la que aparece en la boleta; si no, se usa la principal. Pruebas unitarias de la selección (2026-11-23).
 
 ### Cambiado
 
